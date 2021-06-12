@@ -1,0 +1,70 @@
+version: '3'
+services:
+  client:
+    build: './client'
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+      - PORT=3000
+
+  restaurateur:
+    build: './restaurateur'
+    ports:
+      - "3001:3000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+      - PORT=3000
+
+  livreur:
+    build: './livreur'
+    ports:
+      - "3002:3000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+      - PORT=3000
+
+  commercial:
+    build: './commercial'
+    ports:
+      - "3003:3000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+      - PORT=3000
+
+  technique:
+    build: './technique'
+    ports:
+      - "3004:3000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+      - PORT=3000
+  
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client/public:/srv/www/static
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - client
+      - restaurateur
+      - livreur
+      - commercial
+      - technique
