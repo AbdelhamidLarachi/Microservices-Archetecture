@@ -1,5 +1,19 @@
 version: '3'
 services:
+  lb:
+      image: haproxy
+      ports:
+          - "8080:8080"
+      volumes:
+          - ./haproxy:/usr/local/etc/haproxy
+  nodeapp1:
+      image: nodeapp
+      environment:
+          - APPID=1111
+  nodeapp2:
+      image: nodeapp
+      environment:
+          - APPID=2222  
   client:
     build: './client'
     ports:
@@ -54,17 +68,3 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./client/public:/srv/www/static
-      - ./default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - client
-      - restaurateur
-      - livreur
-      - commercial
-      - technique
