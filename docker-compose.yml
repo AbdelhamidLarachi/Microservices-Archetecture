@@ -6,12 +6,12 @@ services:
           - "8080:8080"
       volumes:
           - ./haproxy:/usr/local/etc/haproxy
-  nodeapp1:
-      image: nodeapp
+  nodecontroller1:
+      image: nodecontroller
       environment:
           - APPID=1111
-  nodeapp2:
-      image: nodeapp
+  nodecontroller2:
+      image: nodecontroller
       environment:
           - APPID=2222  
   client:
