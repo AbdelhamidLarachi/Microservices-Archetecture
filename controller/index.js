@@ -70,7 +70,7 @@ app.all('*', async function (req, res, next) {
         res.status(500).json(error);
     }
 
-    //next();
+    next();
 })
 
 
