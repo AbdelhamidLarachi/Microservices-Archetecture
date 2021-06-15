@@ -28,4 +28,15 @@ router.post('/add', (req, res) => {
 	newArticle.save().then((item) => res.json(item));
 });
 
+
+// @route DELETE api/articles
+// @desc  DELETE a specific Article
+// @access Public
+router.delete('/:id', (req, res) => {
+	Article.findById(req.params.id)
+		.then((item) => item.remove().then(() => res.json({ success: true })))
+		.catch((err) => res.status(404).json({ success: false }));
+});
+
+
 module.exports = router;
