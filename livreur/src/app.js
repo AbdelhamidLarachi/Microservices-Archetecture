@@ -4,9 +4,20 @@ const app = express();
 const router = express.Router();
 
 
-app.get("/", (req, res) => {
+app.post("/", (req, res) => {
+  console.log(req.body)
   res.json({ msg: "livreur" });
 });
+
+app.post("/livreur", (req, res) => {
+  res.json({ msg: "livreur from reverse proxy" });
+});
+
+app.post("/livreur/add", (req, res) => {
+  console.log(req.body)
+  res.json({ msg: "adding livreur" });
+});
+
 
 // GET ALL SENSORS
 router.post('/all', async(req, res) => {
