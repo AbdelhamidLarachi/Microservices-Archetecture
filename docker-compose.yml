@@ -10,10 +10,16 @@ services:
       image: nodecontroller
       environment:
           - APPID=1111
+          - REVERSE_PROXY_PORT=5000
+          - BUILD_V=1.1
+          - LOCAL_IP="192.168.0.110"
   nodecontroller2:
       image: nodecontroller
       environment:
-          - APPID=2222  
+          - APPID=2222 
+          - REVERSE_PROXY_PORT=5000
+          - BUILD_V=1.1 
+          - LOCAL_IP="192.168.0.110"
   client:
     build: './client'
     ports:
