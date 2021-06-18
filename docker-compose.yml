@@ -27,7 +27,7 @@ services:
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false
       - PORT=3000
 
   commercial:
