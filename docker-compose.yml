@@ -1,5 +1,29 @@
 version: '3'
 services:
+  lb:
+      image: haproxy
+      ports:
+          - "8080:8080"
+      volumes:
+          - ./haproxy:/usr/local/etc/haproxy
+  nodecontroller1:
+      image: nodecontroller
+      environment:
+          - APPID=1111
+          - REVERSE_PROXY_URL=http://192.168.0.110:5000
+          - BUILD_V=1.1
+          - DB_USER=sa
+          - DB_PASSWORD=Larachi711
+          - DB_NAME='users'
+  nodecontroller2:
+      image: nodecontroller
+      environment:
+          - APPID=2222 
+          - REVERSE_PROXY_URL=http://192.168.0.110:5000
+          - BUILD_V=1.1 
+          - DB_USER=sa
+          - DB_PASSWORD=Larachi711
+          - DB_NAME=users
   client:
     build: './client'
     ports:
@@ -58,7 +82,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8080:8080"
+      - "5000:5000"
     volumes:
       - ./client/public:/srv/www/static
       - ./default.conf:/etc/nginx/conf.d/default.conf
@@ -68,3 +92,5 @@ services:
       - livreur
       - commercial
       - technique
+      - nodecontroller1
+      - nodecontroller2
