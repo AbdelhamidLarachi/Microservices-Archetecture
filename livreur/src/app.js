@@ -4,18 +4,18 @@ const app = express();
 const router = express.Router();
 
 
-app.post("/", (req, res) => {
-  console.log(req.body)
+app.get("/get", (req, res) => {
   res.json({ msg: "livreur" });
 });
 
 app.post("/livreur", (req, res) => {
+  console.log(req.body)
   res.json({ msg: "livreur from reverse proxy" });
 });
 
 app.post("/livreur/add", (req, res) => {
   console.log(req.body)
-  res.json({ msg: "adding livreur" });
+  res.send("adding livreur");
 });
 
 
