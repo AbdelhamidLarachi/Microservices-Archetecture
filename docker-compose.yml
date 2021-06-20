@@ -71,7 +71,7 @@ services:
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:projetdominanteA4@globalcluster.sodgj.mongodb.net/technique?retryWrites=true&w=majority
       - PORT=3000
   
   db:
