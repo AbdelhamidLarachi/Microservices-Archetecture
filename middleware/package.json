@@ -27,6 +27,7 @@
     "fetch": "^1.1.0",
     "hapi": "^18.1.0",
     "http-proxy-middleware": "^2.0.0",
+    "ip": "^1.1.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.27",
     "morgan": "^1.10.0",
@@ -37,7 +38,8 @@
     "nodemon": "^2.0.4",
     "request": "^2.88.2",
     "stripe": "^8.84.0",
-    "superagent": "^6.0.0"
+    "superagent": "^6.0.0",
+    "ts-transformer-keys": "^0.4.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",
