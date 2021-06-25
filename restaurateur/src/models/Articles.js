@@ -14,6 +14,10 @@ const ArticleSchema = new Schema({
     description: {
         type: String,
         required: false
+    },
+    restaurateur_id: {
+        type: String,
+        required: true
     }
 	
 });

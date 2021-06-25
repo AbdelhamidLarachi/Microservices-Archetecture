@@ -19,12 +19,14 @@ mongoose.set('useUnifiedTopology', true);
 mongoose
 	.connect(db, {
 		useNewUrlParser: true,
-		useCreateIndex: true
+		useCreateIndex: true,
+		useFindAndModify: false
 	})
 	.then(() => console.log('MongoDB Connected'))
 	.catch((err) => console.log(err));
 // Use Routes
 app.use('/api/articles', require('./src/routes/articles'));
+app.use('/api/restaurateur', require('./src/routes/restaurateur'));
 
 
 
