@@ -8,9 +8,10 @@ const bcrypt = require('bcrypt');
 const proxy = require('express-http-proxy');
 const ip = require("ip");
 
+
+
 import { NextFunction, Request, Response } from 'express';
 require('dotenv/config');
-
 
 
 
@@ -199,10 +200,10 @@ function isValidForm(user: any): user is IAuth {
           }
 
           else // unauthorized
-            res.status(401).send()
+            res.status(401).json({err: "unauthorized"})
         } 
         else // !exists
-          res.status(404).send();
+          res.status(404).json({err: "not found"})
        });
   });
   }
@@ -249,9 +250,9 @@ function isValidForm(user: any): user is IAuth {
     }
 
 
-    // bad request 401
+    // bad request 400
     else {
-      res.status(401).json({
+      res.status(400).json({
         expects: {
           email: "string (required)",
           password: "string (required) at least one digit, one lower case, one upper case, 8 characters",
