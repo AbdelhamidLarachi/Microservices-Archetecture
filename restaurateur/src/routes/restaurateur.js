@@ -25,6 +25,7 @@ router.get("/:id", (req, res) => {
 // @desc  Create an Restaurateurs
 // @access Public
 router.post("/add", (req, res) => {
+  console.log('ANI HNAA')
   const newRestaurateur = new Restaurateur({
     name: req.body.name,
     description: req.body.description,
@@ -103,7 +104,7 @@ router.delete("/menus/:id", (req, res) => {
 
 
 // @route PUT api/Restaurateurs
-// @desc  EDIT a specific Restaurateur
+// @desc  EDIT a specific Restaurateur's Menu
 // @access Public
 router.put("/menu/:id", (req, res) => {
   const menu_id = req.params.id;
@@ -119,7 +120,6 @@ router.put("/menu/:id", (req, res) => {
   // console.log('restaurateur_id: ', restaurateur_id)
   // console.log('menu_id: ', menu_id)
   var menuEdited = null; 
-
   Restaurateur.findOne({ _id: restaurateur_id }).then((rest) => {
     rest.menus.map((menu) => {
       console.log('MENU ID:', menu._id)
