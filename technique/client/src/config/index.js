@@ -1,0 +1,12 @@
+import axios from "axios"
+
+export const http = axios.create({
+  baseURL: 'http://192.168.0.110:9000/',
+  headers: {
+    "Content-Type": "application/json;charset=UTF-8",
+    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Method": "DELETE, POST, GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+  }
+});
