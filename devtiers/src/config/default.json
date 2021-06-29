@@ -1,0 +1,6 @@
+{
+	"mongoURI": "mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/ProjetDominante?retryWrites=true&w=majority",
+	"jwtSecret": "mernApp"
+}
+
+
