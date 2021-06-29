@@ -10,58 +10,68 @@ services:
       image: nodecontroller
       environment:
           - APPID=1111
+          - REVERSE_PROXY_URL=http://192.168.0.110:5000
+          - BUILD_V=1.1
+          - DB_USER=sa
+          - DB_PASSWORD=Larachi711
+          - DB_NAME='users'
   nodecontroller2:
       image: nodecontroller
       environment:
-          - APPID=2222  
+          - APPID=2222 
+          - REVERSE_PROXY_URL=http://192.168.0.110:5000
+          - BUILD_V=1.1 
+          - DB_USER=sa
+          - DB_PASSWORD=Larachi711
+          - DB_NAME=users
   client:
-    build: './client'
+    build: './client/server'
     ports:
       - "3000:3000"
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       - PORT=3000
 
   restaurateur:
-    build: './restaurateur'
+    build: './restaurateur/server'
     ports:
       - "3001:3000"
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       - PORT=3000
 
   livreur:
-    build: './livreur'
+    build: './livreur/server'
     ports:
       - "3002:3000"
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       - PORT=3000
 
   commercial:
-    build: './commercial'
+    build: './commercial/server'
     ports:
       - "3003:3000"
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       - PORT=3000
 
   technique:
-    build: './technique'
+    build: './technique/server'
     ports:
       - "3004:3000"
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb://db/microservices
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/technique?retryWrites=true&w=majority
       - PORT=3000
   
   db:
