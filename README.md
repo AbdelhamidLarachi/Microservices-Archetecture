@@ -21,7 +21,7 @@ CREATE TABLE usr (
 ```
 **Run Middleware:** 
 ```sh
-cd middleware && npm install && nodemon app.ts
+cd middleware && npm install && nodemon index.ts
 ```
 
 **Build Docker Dontainers:** 
