@@ -66,7 +66,7 @@
           <v-btn
             color="primary"
             nuxt
-            to="/inspire"
+            to="/Login"
           >
             Continue
           </v-btn>

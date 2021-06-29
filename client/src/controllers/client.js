@@ -28,8 +28,8 @@ export const register = async (credentialId, {name, lastName, phoneNumber, addre
     try {
         // User check 
 
-        let clientCheck = await Client.findById(credentialId)
-        if(clientCheck)  throw new Error('Client already exist')
+        // let clientCheck = await Client.findById(credentialId)
+        // if(clientCheck)  throw new Error('Client already exist')
 
         let client = await new Client({
             credentialsId: credentialsId,

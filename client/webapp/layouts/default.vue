@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -23,13 +23,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
     <v-app-bar
       :clipped-left="clipped"
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
@@ -47,7 +47,7 @@
         @click.stop="fixed = !fixed"
       >
         <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn
@@ -69,14 +69,31 @@
       fixed
     >
       <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
+        <v-list-item >
+          <!-- <v-list-item-action>
             <v-icon light>
               mdi-repeat
             </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          </v-list-item-action> -->
+          <v-list-item-title>
+            <v-btn block elevation="2" to="/user/login" >
+              Connexion
+            </v-btn>
+          </v-list-item-title>
         </v-list-item>
+        <v-list-item >
+          <!-- <v-list-item-action>
+            <v-icon light>
+              mdi-repeat
+            </v-icon>
+          </v-list-item-action> -->
+          <v-list-item-title>
+            <v-btn block elevation="2" to="/user/register" >
+              Inscription
+            </v-btn>
+          </v-list-item-title>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
     <v-footer
@@ -110,7 +127,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Delivery Like That'
     }
   }
 }
