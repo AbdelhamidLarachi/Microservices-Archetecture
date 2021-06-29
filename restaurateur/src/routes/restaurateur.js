@@ -3,7 +3,6 @@ const router = express.Router();
 
 // Restaurateur Model
 const Restaurateur = require("../../src/models/Restaurateur");
-const Articles = require("../../src/models/Articles");
 
 // @route GET api/Restaurateurs
 // @desc  GET ALL Restaurateurs
