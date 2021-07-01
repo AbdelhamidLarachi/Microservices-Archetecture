@@ -45,12 +45,13 @@ app.all('*', async function (req, res, next) {
 		}
 
 
-		// No Version
-		if(req.body.version == undefined) 
+		/* No Version
+		if(req.method == "POST" && req.body.version == undefined) 
 		{
 			res.status(400).json({ error: "Bad request" });
 			return;
 		}
+		
 
 		// Unsupported Version
 		if(req.body.version < process.env.BUILD_V)
@@ -58,9 +59,9 @@ app.all('*', async function (req, res, next) {
 			res.status(505).json({ error: "Unsupported version." });
 			return;
 		}
+		*/
 
-
-		if(!['client', 'restaurateur', 'livreur', 'commercial', 'technique'].includes(appName))
+		if(!['client', 'restaurateur', 'livreur', 'commercial', 'technique', 'devtiers'].includes(appName))
 		{
 			res.status(505).json({ error: "Unsupported app-name." });
 			return;

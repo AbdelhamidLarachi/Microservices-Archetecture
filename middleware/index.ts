@@ -83,8 +83,7 @@ function isValidPassword(password: string) {
 
 // @type assertion as IAuth
 function isValidForm(user: any): user is IAuth {
-  return (isValidEmail(user.email) &&
-  (isValidPassword(user.password)) && (typeof (user.version) == "number"));
+  return (isValidEmail(user.email) && (isValidPassword(user.password) && (user.role in role)));
 }
 
 
@@ -222,7 +221,7 @@ function isValidForm(user: any): user is IAuth {
   // connect to your database
   sql.connect(config, function (err?: Error) {
   
-    if (err) res.status(500).send();
+    if (err) res.status(500).json(err);
 
     if(isValidForm(req.body)){
 
@@ -257,11 +256,11 @@ function isValidForm(user: any): user is IAuth {
           email: "string (required)",
           password: "string (required) at least one digit, one lower case, one upper case, 8 characters",
           role: Object.values(role).filter(key => isNaN(Number(key))) // iterate role enum props
-        }
-      });
+      }});
     }
   });
 }
+
 
 
 

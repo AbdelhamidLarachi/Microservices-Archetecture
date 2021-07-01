@@ -108,6 +108,8 @@
 
 import VLayout from '@/layouts/Minimal.vue';
 import VCard from '@/components/Card.vue';
+import { http } from "@/config/index.js";
+
 
 export default {
   /**
@@ -150,7 +152,27 @@ export default {
      * @param {Object} user The user to be registered.
      */
     register(user) {
-      this.$store.dispatch('auth/register', user);
+
+      // check password match
+      if(this.passwordConfirm != this.password){
+        window.alert("Password do not match");
+        return;
+      }
+
+      user.role = "technique";
+      http.post('signup', user).then((res) => {
+          
+          if(res.status == 201){
+            window.alert("Registred");
+            this.$router.push({ path: 'login' });   
+          } else {
+            window.alert("Try again.");
+          }
+        }).catch(function(err) {
+          // display err
+          console.log(err);
+        });
+        
     },
   },
 };

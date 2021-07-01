@@ -9,8 +9,8 @@ module.exports = {
   rules: {
     'indent': 'off',
     'vue/script-indent': [
-      'error',
-      2,
+      'warn',
+      1,
       { 'baseIndent': 1 }
     ],
   },
