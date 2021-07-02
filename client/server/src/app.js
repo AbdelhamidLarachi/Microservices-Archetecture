@@ -1,69 +1,18 @@
-const express = require("express");
-const Sensor = require("./models/sensor");
-const app = express();
-const router = express.Router();
+const express = require("express")
+const bodyParser = require("body-parser")
 
+// Express app initialization
+const app = express()
 
-app.get("/", (req, res) => {
-  res.json({ msg: "client" });
-});
+// Redirecting to controllers by route
+app.use(bodyParser.json())
 
-// GET ALL SENSORS
-router.post('/all', async(req, res) => {
-  try {
-      const sensor = await Sensor.find().select("_id"); // exclude id
-      res.json(sensor);
-  } catch(err){
-      res.json(err);
-  }
-});
+app.use('/api/articles', require('./routes/articles'));
+app.use('/api/restaurateur', require('./routes/restaurateur'));
+app.use('/api/commandes', require('./routes/commandes'));
+app.use('/api/client', require('./routes/client'));
+app.use('/api/notifications', require('./routes/notification'));
+app.use('/api/livraisonsclient', require('./routes/livraisonsclient'));
 
-
-// GET SIGNLE SENSOR
-
-router.post('/find', async(req, res) => {
-  try {
-      const sensor = await Sensor.find({ id: req.body.id });
-      res.json(sensor);
-  } catch(err){
-      res.json(err);
-  }
-});
-
-
-// DELETE SENSOR 
-
-router.delete('/delete', async(req, res) => {
-  //Sensor.findByIdAndDelete((req.body.id), 
-  Sensor.remove({id:4},     
-  function(err, data) {
-      if(err){
-          console.log(err);
-      }
-      else{
-          res.send(data);
-      }
-  });  
-});
-
-// ADD SENSOR 
-
-router.post('/add', async(req, res) => {
-
-  const sensor = new Sensor({
-      id: req.body.id,
-      type: req.body.type,
-      datas: req.body.datas,
-      metrics: req.body.metrics
-  });
-
-  sensor.save()
-  .then(sensor=>{
-      res.json(sensor);
-  })
-  .catch(err=>{
-      console.log(err)
-  })
-});
-
+// Export express app
 module.exports = app;

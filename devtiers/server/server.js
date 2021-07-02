@@ -24,7 +24,7 @@ mongoose
 	.then(() => console.log('MongoDB Connected'))
 	.catch((err) => console.log(err));
 // Use Routes
-app.use('/api/articles', require('./src/routes/articles'));
+app.use('/api/dev', require('./src/routes/dev'));
 
 
 

@@ -1,0 +1,44 @@
+{
+  "name": "commercialui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "bootstrap-vue": "^2.21.2",
+    "chart.js": "^2.9.4",
+    "vue": "^2.6.14",
+    "vue-chartkick": "^1.1.0",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^9.1.2",
+    "vue-router": "^3.2.0",
+    "vuelidate": "^0.7.6",
+    "vuetify": "^2.4.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.32",
+    "@types/vue-chartkick": "^0.5.1",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "axios": "^0.21.1",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-axios": "0.0.4",
+    "vue-cli-plugin-vuetify": "^2.4.1",
+    "vue-template-compiler": "^2.6.11",
+    "vue-trend-chart": "^0.15.3",
+    "vuetify-loader": "^1.7.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

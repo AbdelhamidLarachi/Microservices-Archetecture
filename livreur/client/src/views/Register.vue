@@ -9,21 +9,21 @@
     <form style="padding: 50px">
       <h1>Inscription</h1>
       <v-text-field
-        v-model="name"
+        v-model="user.name"
         label="Nom"
         required
 
       ></v-text-field>
 
       <v-text-field
-        v-model="lastname"
+        v-model="user.lastname"
         label="Prénom"
         required
 
       ></v-text-field>
 
       <v-text-field
-        v-model="phone_number"
+        v-model="user.phone_number"
         label="N° Téléphone"
         type="number"
         required
@@ -31,7 +31,7 @@
       ></v-text-field>
 
       <v-text-field
-        v-model="email"
+        v-model="user.email"
         :error-messages="emailErrors"
         label="E-mail"
         required
@@ -40,14 +40,21 @@
       ></v-text-field>
 
       <v-text-field
-        v-model="password"
+        v-model="user.password"
         label="Mot de passe"
         type="password"
         required
       ></v-text-field>
 
+      <v-text-field
+        v-model="user.passwordConfirm"
+        label="Confirmer Mot de passe"
+        type="password"
+        required
+      ></v-text-field>
+
       <v-checkbox
-        v-model="checkbox"
+        v-model="user.checkbox"
         :error-messages="checkboxErrors"
         label="Do you agree?"
         required
@@ -59,7 +66,6 @@
       <v-btn @click="clear"> clear </v-btn>
       <br />
       <br />
-      <a @click="navigateToRegister">Vous etes déja inscris ?</a>
     </form>
   </v-card>
 </template>
@@ -67,6 +73,7 @@
 import { validationMixin } from "vuelidate";
 import { required, email } from "vuelidate/lib/validators";
 import {api} from "../config/axios";
+import axios from "axios";
 
 export default {
   mixins: [validationMixin],
@@ -81,12 +88,19 @@ export default {
   },
 
   data: () => ({
-    name: "",
-    lastname: "",
-    email: "",
-    password: "",
-    phone_number: "",
-    checkbox: false,
+    user: {
+      credential_id: 18,
+      name: "",
+      lastname: "",
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      phone_number: "",
+      checkbox: false,
+      active: false,
+      verified: false,
+      private: false
+  }
   }),
 
   computed: {
@@ -111,16 +125,38 @@ export default {
       this.$router.push("/login");
     },
     submit() {
+      // check password match
+      if(this.user.passwordConfirm != this.user.password){
+        window.alert("Password do not match");
+        return;
+      }
+
+      this.user.role = "livreur";
+      axios.post('signup', this.user).then((res) => {
+          
+          if(res.status == 201){
+            this.register();
+            window.alert("Registred");
+            this.$router.push({ path: 'login' });   
+          } else {
+            window.alert("Try again.");
+          }
+        }).catch(function(err) {
+          // display err
+          console.log(err);
+        });
+      
+    },
+    clear() {
+      this.$v.$reset();
+      this.user.name = "";
+      this.user.email = "";
+      this.user.checkbox = false;
+    },
+
+    register(){
       api
-        .post("/livreur", {
-          credential_id: 18,
-          name: this.name,
-          lastname: this.lastname,
-          phone_number: this.phone_number,
-          active: false,
-          verified: false,
-          private: false,
-        })
+        .post("/livreur", this.user)
         .then((res) => {
           localStorage.setItem("livreur_data", JSON.stringify(res.data));
           this.$router.push("/");
@@ -129,14 +165,7 @@ export default {
           console.log(err);
         });
       this.$v.$touch();
-    },
-    clear() {
-      this.$v.$reset();
-      this.name = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = false;
-    },
+    }
   },
 };
 </script>

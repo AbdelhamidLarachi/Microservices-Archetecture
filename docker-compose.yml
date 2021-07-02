@@ -41,7 +41,7 @@ services:
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/ProjetDominante?retryWrites=true&w=majority
       - PORT=3000
 
   livreur:
@@ -51,7 +51,7 @@ services:
     depends_on: 
       - db
     environment:
-      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/ProjetDominante?retryWrites=true&w=majority
       - PORT=3000
 
   commercial:
@@ -72,6 +72,16 @@ services:
       - db
     environment:
       - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/technique?retryWrites=true&w=majority
+      - PORT=3000
+
+  devtiers:
+    build: './devtiers/server'
+    ports:
+      - "3005:3000"
+    depends_on:
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb+srv://zizouLivreur:zizouLivreur@globalcluster.sodgj.mongodb.net/ProjetDominante?retryWrites=true&w=majority
       - PORT=3000
   
   db:

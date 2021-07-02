@@ -16,6 +16,7 @@
     "@octokit/rest": "^18.0.12",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.8.0",
+    "@types/node": "^15.12.5",
     "axios": "^0.19.2",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",

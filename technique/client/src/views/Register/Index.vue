@@ -154,7 +154,7 @@ export default {
     register(user) {
 
       // check password match
-      if(this.passwordConfirm != this.password){
+      if(this.user.passwordConfirm != this.user.password){
         window.alert("Password do not match");
         return;
       }

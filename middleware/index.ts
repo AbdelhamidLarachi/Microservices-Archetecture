@@ -43,7 +43,8 @@ enum role {
   restaurateur,
   livreur,
   technique,
-  commercial
+  commercial,
+  devtiers
 }
 
 
