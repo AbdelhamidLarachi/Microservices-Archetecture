@@ -13,7 +13,7 @@ services:
           - REVERSE_PROXY_URL=http://192.168.0.110:5000
           - BUILD_V=1.1
           - DB_USER=sa
-          - DB_PASSWORD=Larachi711
+          - DB_PASSWORD=teamwork
           - DB_NAME='users'
   nodecontroller2:
       image: nodecontroller
@@ -22,7 +22,7 @@ services:
           - REVERSE_PROXY_URL=http://192.168.0.110:5000
           - BUILD_V=1.1 
           - DB_USER=sa
-          - DB_PASSWORD=Larachi711
+          - DB_PASSWORD=teamwork
           - DB_NAME=users
   client:
     build: './client/server'
